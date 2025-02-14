@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+
+    <form method="POST">
+        <!-- Other login fields (username, password) -->
+        
+        <div>
+            <label for="captcha">Enter CAPTCHA:</label>
+            <img src="{{ url_for('captcha') }}" alt="Captcha" id="captcha_image">
+            <input type="text" name="captcha" id="captcha" required>
+            <button type="button" onclick="reloadCaptcha()">Reload CAPTCHA</button>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        // Reload CAPTCHA image
+        function reloadCaptcha() {
+            const captchaImage = document.getElementById("captcha_image");
+            captchaImage.src = "{{ url_for('captcha') }}?" + new Date().getTime();
+        }
+    </script>
+</body>
+</html>
